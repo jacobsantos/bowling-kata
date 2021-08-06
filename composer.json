@@ -1,0 +1,13 @@
+{
+    "name": "jacobsantos/bowling-kata",
+    "description": "Bowling Kata",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "JacobSantos\\": "./source"
+        }
+    },
+    "require": {
+    }
+}
