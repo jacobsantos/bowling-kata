@@ -2,7 +2,7 @@
 
 namespace JacobSantos\Infrastructure\Bowling;
 
-use JacobSantos\Infrastructure\Bowling\Bowl\Factory;
+use JacobSantos\Infrastructure\Bowling\Bowl\FrameFactory;
 use JacobSantos\Infrastructure\Bowling\Score\Calculator;
 
 /**
@@ -10,11 +10,16 @@ use JacobSantos\Infrastructure\Bowling\Score\Calculator;
  */
 class Bowling implements Game
 {
+    public const MAX_SCORE = 10;
+
     protected Calculator $_calculator;
 
-    public function __construct(Calculator $calculator)
+    protected FrameFactory $_frameFactory;
+
+    public function __construct(Calculator $calculator, FrameFactory $frameFactory)
     {
         $this->_calculator = $calculator;
+        $this->_frameFactory = $frameFactory;
     }
 
     /**
@@ -23,10 +28,9 @@ class Bowling implements Game
      */
     public function play(int $playFrames = 10)
     {
-        $factory = new Factory();
         $frames = [];
         foreach (range(0, $playFrames) as $turn) {
-            $frames[] = $factory->random();
+            $frames[] = $this->_frameFactory->create(self::MAX_SCORE);
         }
 
     }

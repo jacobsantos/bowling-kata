@@ -7,48 +7,37 @@ namespace JacobSantos\Infrastructure\Bowling\Bowl;
  */
 class Factory
 {
-    private const MAX_SCORE = 10;
-
     /**
-     * @return Frame
-     * @throws \Exception
+     * @return FrameFactory
      */
-    public function random(): Frame
+    public function random(): FrameFactory
     {
-        $first = random_int(0, self::MAX_SCORE);
-        $second = 0;
-        if ($first < self::MAX_SCORE) {
-            $second = random_int(0, self::MAX_SCORE - $first);
-        }
-        return new Bowl($first, $second);
+        return new RandomFrameFactory();
     }
 
     /**
-     * @return Frame
+     * @return FrameFactory
      */
-    public function strike(): Frame
+    public function strike(): FrameFactory
     {
-        return new Bowl(self::MAX_SCORE, 0);
+        return new StrikeFrameFactory();
     }
 
     /**
-     * @return Frame
-     * @throws \Exception
+     * @return FrameFactory
      */
-    public function spare(): Frame
+    public function spare(): FrameFactory
     {
-        $first = random_int(0, self::MAX_SCORE - 1);
-        $second = self::MAX_SCORE - $first;
-        return new Bowl($first, $second);
+        return new SpareFrameFactory();
     }
 
     /**
      * @param int $first
      * @param int $second
-     * @return Frame
+     * @return FrameFactory
      */
-    public function attempt(int $first, int $second): Frame
+    public function attempt(int $first, int $second): FrameFactory
     {
-        return new Bowl($first, $second);
+        return new ManualFrameFactory($first, $second);
     }
 }
