@@ -5,9 +5,13 @@
     "license": "proprietary",
     "autoload": {
         "psr-4": {
-            "JacobSantos\\": "./source"
+            "JacobSantos\\": "./source",
+            "JacobSantosTest\\": "./tests"
         }
     },
     "require": {
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.*"
     }
 }
